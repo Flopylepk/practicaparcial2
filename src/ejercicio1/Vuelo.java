@@ -5,10 +5,11 @@ public class Vuelo {
 	private int numero;
 	private Asientos asientos;
 	private Aerolinea aerolinea;
-	public Vuelo(String avion, int numero, Aerolinea aerolinea) {
+	public Vuelo(String avion, int numero,Asientos asientos, Aerolinea aerolinea) {
 		super();
 		this.avion = avion;
 		this.numero = numero;
+		this.asientos=asientos;
 		this.aerolinea = aerolinea;
 	}
 	public Vuelo(String avion, int numero) {

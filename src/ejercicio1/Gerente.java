@@ -28,7 +28,8 @@ public class Gerente extends Usuarios{
 		// TODO Auto-generated method stub
 		super.Registrarse();
 		Aerolinea aerolinea1=new Aerolinea("AerolineasArgentinas");
-		Vuelo vuelo= new Vuelo("",0,aerolinea1);
+		Asientos asientos=new Asientos();
+		Vuelo vuelo= new Vuelo("",0,asientos,aerolinea1);
 		this.aerolinea=aerolinea1;
 		String [] menu= {"Crear vuelo", "ver Aerolinea", "ver vuelo","ver mis datos", "salir"};
 		int opcion=0;
