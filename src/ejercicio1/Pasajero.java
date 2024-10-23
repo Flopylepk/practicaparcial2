@@ -39,11 +39,16 @@ public String toString() {
 @Override
 public void Registrarse() {
 	Aerolinea aerolinea=new Aerolinea("AerolineasArgentinas");
-	Asientos asientos=new Asientos();
+	String [][] asientos3={
+			{"disp","disp","ocup","disp"},
+			{"disp","ocup","disp","disp"},
+			{"ocup","disp","disp","disp"},
+			{"disp","disp","disp","ocup"},
+	};
+	Asientos asientos=new Asientos(asientos3);
 	Vuelo vuelo=new Vuelo("Pepe", 12,asientos,aerolinea);
 	super.Registrarse();
 	this.vuelo=vuelo;
-	String asientos2="Asientos\n";
 	String []menu= {"reservar asiento", "ver vuelo", "ver asiento","ver mis datos", "salir"};
 	int opcion=0;
 	do {
@@ -51,27 +56,7 @@ public void Registrarse() {
 		switch (opcion) {
 		case 0:
 			if (asiento=="no asignado") {
-				for (int i = 0; i < asientos.getAsientos().length; i++) {
-					asientos2 = asientos2 + "--------Fila" +(i+1) +"--------\n" ;
-					for (int j = 0; j < asientos.getAsientos()[i].length; j++) {
-						asientos2 = asientos2 + " Asiento " +(j+1) +asientos.getAsientos()[i][j] ;
-					}
-					asientos2 = asientos2 + "\n";
-				};
-				int fila = validarNumeros("Ingrese fila\n" + asientos);
-				
-				int column = JOptionPane.showOptionDialog(null, "Elija el asiento", "", 0, 0, null, asientos.getAsientos()[fila], asientos.getAsientos()[fila][0]);
-				
-				if ( asientos.getAsientos()[fila][column].equals("disp")) {
-					
-					asientos.getAsientos()[fila][column] = "ocup";
-					this.asiento = " Fila " + fila + " asiento " + column ; 
-					JOptionPane.showMessageDialog(null, "Ya tenes tu asiento!");
-					
-				}else {
-					JOptionPane.showMessageDialog(null, "No podes seleccionar asietno");
-
-				}
+				asiento=ReservarAsiento(asientos);
 			}else {
 				JOptionPane.showMessageDialog(null, "usted ya tiene un asiento asignado");
 			}
@@ -80,7 +65,7 @@ public void Registrarse() {
 			JOptionPane.showMessageDialog(null, vuelo);
 			break;
 		case 2:
-			if (this.asiento!="no asignado") {
+			if (this.asiento=="no asignado") {
 				JOptionPane.showMessageDialog(null, "usted primero tiene que reservar un asiento");
 			}else {
 				JOptionPane.showMessageDialog(null, this.asiento);
@@ -123,5 +108,33 @@ public String validarCaracteres(String mensaeje) {
 		palabra = JOptionPane.showInputDialog(mensaeje);
 	}
 	return palabra;
+}
+public String ReservarAsiento(Asientos asiento) {
+	String asientos2="Asientos\n";
+	for (int i = 0; i < asiento.getAsientos().length; i++) {
+		asientos2 = asientos2 + "--------Fila" +(i+1) +"--------\n" ;
+		for (int j = 0; j < asiento.getAsientos()[i].length; j++) {
+			asientos2 = asientos2 + " Asiento " +(j+1) +asiento.getAsientos()[i][j] ;
+		}
+		asientos2 = asientos2 + "\n";
+	};
+	int fila = validarNumeros("Ingrese fila\n" + asientos2);
+	fila=fila-1;
+	
+	int column = JOptionPane.showOptionDialog(null, "Elija el asiento", "", 0, 0, null, asiento.getAsientos()[fila], asiento.getAsientos()[fila][0]);
+	
+	if ( asiento.getAsientos()[fila][column].equals("disp")) {
+		
+		asiento.getAsientos()[fila][column] = "ocup"; 
+		JOptionPane.showMessageDialog(null, "Ya tenes tu asiento!");
+		fila=fila+1;
+		return " Fila " + fila + " asiento " + column ;
+		
+	}else {
+		JOptionPane.showMessageDialog(null, "No podes seleccionar asietno");
+		return "no asignado";
+
+	}
+	
 }
 }
