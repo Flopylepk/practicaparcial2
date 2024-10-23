@@ -24,6 +24,12 @@ public String toString() {
 }
 
 
+@Override
+public void Registrarse() {
+	// TODO Auto-generated method stub
+	super.Registrarse();
+}
+
 //Validaciones
 public static int validarNumeros(String mensaje) {
 	boolean flag ;
