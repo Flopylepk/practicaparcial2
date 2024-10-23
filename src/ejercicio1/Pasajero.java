@@ -26,8 +26,11 @@ public String toString() {
 
 @Override
 public void Registrarse() {
-	// TODO Auto-generated method stub
+	Aerolinea aerolinea=new Aerolinea("AerolineasArgentinas");
+	Vuelo vuelo=new Vuelo("Pepe", 12,aerolinea);
 	super.Registrarse();
+	this.vuelo=vuelo;
+	
 }
 
 //Validaciones
