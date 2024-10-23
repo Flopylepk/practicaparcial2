@@ -36,7 +36,12 @@ public class Gerente extends Usuarios{
 			opcion=JOptionPane.showOptionDialog(null, "menu de gerente", null, 0, 0, null, menu, menu[0]);
 			switch (opcion) {
 			case 0:
-				
+				if (vuelo.getAvion()=="") {
+					vuelo.setAvion(validarCaracteres("ingrese el nombre del vuelo"));
+					vuelo.setNumero(validarNumeros("ingrese el numero del vuelo"));
+				}else {
+					JOptionPane.showMessageDialog(null, "usted ya creo un vuelo");
+				}
 				break;
 			case 1:
 				JOptionPane.showMessageDialog(null, aerolinea1);

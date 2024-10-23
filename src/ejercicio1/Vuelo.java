@@ -11,6 +11,11 @@ public class Vuelo {
 		this.numero = numero;
 		this.aerolinea = aerolinea;
 	}
+	public Vuelo(String avion, int numero) {
+		super();
+		this.avion = avion;
+		this.numero = numero;
+	}
 	public String getAvion() {
 		return avion;
 	}
